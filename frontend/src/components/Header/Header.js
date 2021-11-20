@@ -23,7 +23,7 @@ const Header = () => {
                 placeholder="Search"
                 className="mr-sm-2"
               />
-              <Button variant="secondary">Search</Button>
+              {/* <Button variant="secondary">Search</Button> */}
             </Form>
           </Nav>
           <Nav>
