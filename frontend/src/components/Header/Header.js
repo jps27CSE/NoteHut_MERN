@@ -8,11 +8,15 @@ import {
   Button,
 } from "react-bootstrap";
 
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Note App</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">Note App</Link>
+        </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -27,7 +31,9 @@ const Header = () => {
             </Form>
           </Nav>
           <Nav>
-            <Nav.Link href="/mynotes">My Notes</Nav.Link>
+            <Nav.Link href="/mynotes">
+              <Link to="/mynotes">My Notes</Link>
+            </Nav.Link>
             <NavDropdown title="User" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
