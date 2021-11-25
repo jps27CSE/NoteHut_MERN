@@ -1,7 +1,16 @@
 import { Container, Row, Button } from "react-bootstrap";
 import "./LandingPage.css";
+import { useEffect } from "react";
 
 const LandingPage = () => {
+  // useEffect(() => {
+  //   const userInfo = localStorage.getItem("userInfo");
+
+  //   if (userInfo) {
+  //     history.push("/mynotes");
+  //   }
+  // }, [history]);
+
   return (
     <div className="main">
       <Container>
