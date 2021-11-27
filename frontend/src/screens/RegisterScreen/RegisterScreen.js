@@ -48,6 +48,34 @@ const RegisterScreen = () => {
     }
   };
 
+  const postDetails = (pics) => {
+    if (!pics) {
+      return setPicMessage("Please Select an Image");
+    }
+    setPicMessage(null);
+
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "note_app");
+      data.append("cloud_name", "djvnjajok");
+      fetch("https://api.cloudinary.com/v1_1/djvnjajok/image/upload", {
+        method: "post",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setPic(data.url.toString());
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      return setPicMessage("Please Select an Image");
+    }
+  };
+
   return (
     <MainScreen title="REGISTER">
       <div className="loginContainer">
@@ -95,7 +123,10 @@ const RegisterScreen = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </Form.Group>
-          {/* {{picMessage &&(<ErrorMessage variant="danger">{picMessage}</ErrorMessage>)}} */}
+
+          {picMessage && (
+            <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+          )}
 
           <Form.Group controlId="pic">
             <Form.Label>Profile Picture</Form.Label>
@@ -104,7 +135,7 @@ const RegisterScreen = () => {
               type="image/png"
               label="Upload Profile Picture"
               custom
-              // onChange={(e)=>postDetails(e.target.files[0])}
+              onChange={(e) => postDetails(e.target.files[0])}
             />
           </Form.Group>
           <Button variant="primary" type="submit">
