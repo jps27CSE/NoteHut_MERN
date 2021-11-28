@@ -9,9 +9,21 @@ import {
 } from "react-bootstrap";
 
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../actions/userActions";
 
 const Header = () => {
   const history = useHistory();
+
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    history.push("/");
+  };
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
@@ -43,12 +55,14 @@ const Header = () => {
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item
+              {/* <NavDropdown.Item
                 onClick={() => {
                   localStorage.removeItem("userInfo");
                   history.push("/");
                 }}
-              >
+                onCLick={logoutHandler}
+              > */}
+              <NavDropdown.Item onClick={logoutHandler}>
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
