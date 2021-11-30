@@ -3,17 +3,35 @@ import { Button, Card, Badge, Accordion } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-const MyNotes = () => {
-  const [notes, setNotes] = useState([]);
+import { useDispatch, useSelector } from "react-redux";
+import { listNotes } from "../../actions/notesActions";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
+import { useHistory } from "react-router-dom";
 
-  const fetchNotes = async () => {
-    const { data } = await axios.get("api/notes");
-    setNotes(data);
-  };
+const MyNotes = () => {
+  // const [notes, setNotes] = useState([]);
+  const dispatch = useDispatch();
+  const noteList = useSelector((state) => state.noteList);
+  const { loading, notes, error } = noteList;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  // const fetchNotes = async () => {
+  //   const { data } = await axios.get("api/notes");
+  //   setNotes(data);
+  // };
+
+  const history = useHistory();
 
   useEffect(() => {
-    fetchNotes();
-  }, []);
+    // fetchNotes();
+    dispatch(listNotes());
+    if (!userInfo) {
+      history.push("/");
+    }
+  }, [dispatch]);
 
   const deleteHandler = (id) => {
     if (window.confim("Are you Sure?")) {
@@ -21,13 +39,15 @@ const MyNotes = () => {
   };
 
   return (
-    <MainScreen title="Welcome Back Jack">
+    <MainScreen title={`Welcome Back ${userInfo.name}...`}>
       <Link to="/createnote">
         <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
           Create New Note
         </Button>
       </Link>
-      {notes.map((note) => (
+      {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+      {loading && <Loading />}
+      {notes?.map((note) => (
         <Accordion key={note._id}>
           <Card style={{ margin: 10 }} key={note._id}>
             <Card.Header style={{ display: "flex" }}>
@@ -64,7 +84,13 @@ const MyNotes = () => {
                   <Badge variant="success">Category - {note.category}</Badge>
                 </h4>
                 <blockquote className="blockquote mb-0">
-                  Create on - Date
+                  <p>{note.content}</p>
+                  <footer className="blockquote-footer">
+                    Create on{" "}
+                    <cite title="Source Title">
+                      {note.createdAt.substring(0, 10)}
+                    </cite>
+                  </footer>
                 </blockquote>
               </Card.Body>
             </Accordion.Collapse>
