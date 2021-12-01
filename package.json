@@ -20,6 +20,7 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.13",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "react-markdown": "^7.1.1"
   }
 }

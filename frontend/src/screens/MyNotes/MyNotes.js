@@ -18,6 +18,9 @@ const MyNotes = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const noteCreate = useSelector((state) => state.noteCreate);
+  const { success: successCreate } = noteCreate;
+
   // const fetchNotes = async () => {
   //   const { data } = await axios.get("api/notes");
   //   setNotes(data);
@@ -31,7 +34,7 @@ const MyNotes = () => {
     if (!userInfo) {
       history.push("/");
     }
-  }, [dispatch]);
+  }, [dispatch, successCreate, history, userInfo]);
 
   const deleteHandler = (id) => {
     if (window.confim("Are you Sure?")) {
