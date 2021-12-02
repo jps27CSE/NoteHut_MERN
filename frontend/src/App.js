@@ -7,20 +7,25 @@ import { BrowserRouter, Route } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
 import CreateNote from "./screens/CreateNote/CreateNote";
-function App() {
+import SingleNote from "./screens/SingleNote/SingleNote";
+import { useState } from "react";
+const App = () => {
+  const [search, setSearch] = useState("");
+
   return (
     <BrowserRouter>
-      <Header />
+      <Header setSearch={setSearch} />
       <main>
         <Route path="/" exact component={LandingPage} />
-        <Route path="/login" exact component={LoginScreen} />
-        <Route path="/register" exact component={RegisterScreen} />
-        <Route path="/createnote" exact component={CreateNote} />
-        <Route path="/mynotes" component={MyNotes} />
+        <Route path="/login" component={LoginScreen} />
+        <Route path="/register" component={RegisterScreen} />
+        <Route path="/createnote" component={CreateNote} />
+        <Route path="/note/:id" component={SingleNote} />
+        <Route path="/mynotes" component={() => <MyNotes search={search} />} />
       </main>
       <Footer />
     </BrowserRouter>
   );
-}
+};
 
 export default App;
