@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const noteRoutes = require("./routes/noteRoutes");
+const path = require("path");
 
 const app = express();
 dotenv.config();
@@ -18,6 +19,21 @@ app.use(express.json());
 // app.get("/api/notes", (req, res) => {
 //   res.json(notes);
 // });
+
+// .................deployment................
+__dirname = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is Running");
+  });
+}
+// .................deployment................
 
 app.get("/api/note/:id", (req, res) => {
   const note = notes.find((n) => n._id === req.params.id);
