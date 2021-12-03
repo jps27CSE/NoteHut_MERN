@@ -76,3 +76,4 @@ typings/
 .fusebox/
 .prettierrc
 
+/frontend/build
