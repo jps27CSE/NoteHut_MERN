@@ -17,7 +17,7 @@ const LandingPage = ({ history }) => {
         <Row>
           <div className="intro-text">
             <div>
-              <h1 className="title">Welcome to Note App</h1>
+              <h1 className="title">Welcome to NoteHut</h1>
               <div className="buttonContainer">
                 <a href="/login">
                   <Button size="lg" className="landingbutton">

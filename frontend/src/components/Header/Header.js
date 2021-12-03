@@ -29,7 +29,7 @@ const Header = ({ setSearch }) => {
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
         <Navbar.Brand>
-          <Link to="/">Note App</Link>
+          <Link to="/">NoteHut</Link>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
