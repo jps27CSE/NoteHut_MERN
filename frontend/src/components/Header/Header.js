@@ -46,27 +46,37 @@ const Header = ({ setSearch }) => {
             </Form>
           </Nav>
           <Nav>
-            <Nav.Link href="/mynotes">
-              <Link to="/mynotes">My Notes</Link>
-            </Nav.Link>
-            <NavDropdown title="User" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              {/* <NavDropdown.Item
+            {userInfo ? (
+              <>
+                <Nav.Link href="/mynotes">
+                  <Link to="/mynotes">My Notes</Link>
+                </Nav.Link>
+                <NavDropdown title={userInfo.name} id="collasible-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">
+                    My Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    Another action
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">
+                    Something
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  {/* <NavDropdown.Item
                 onClick={() => {
                   localStorage.removeItem("userInfo");
                   history.push("/");
                 }}
                 onCLick={logoutHandler}
               > */}
-              <NavDropdown.Item onClick={logoutHandler}>
-                Logout
-              </NavDropdown.Item>
-            </NavDropdown>
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>{" "}
+              </>
+            ) : (
+              <Nav.Link href="/login">Login</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
