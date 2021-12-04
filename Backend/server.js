@@ -20,8 +20,16 @@ app.use(express.json());
 //   res.json(notes);
 // });
 
+app.get("/api/note/:id", (req, res) => {
+  const note = notes.find((n) => n._id === req.params.id);
+  res.send(note);
+});
+
+app.use("/api/users", userRoutes);
+app.use("/api/notes", noteRoutes);
+
 // .................deployment................
-const __dirname = path.resolve();
+__dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));
@@ -35,14 +43,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 // .................deployment................
-
-app.get("/api/note/:id", (req, res) => {
-  const note = notes.find((n) => n._id === req.params.id);
-  res.send(note);
-});
-
-app.use("/api/users", userRoutes);
-app.use("/api/notes", noteRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
