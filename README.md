@@ -1,4 +1,15 @@
 # NoteApp_MERN
+
+## Technologies Used:
+
+i) MongoDB
+
+ii) Express
+
+iii) React
+
+iv) Node-JS
+
  
 ## env config - 
 
