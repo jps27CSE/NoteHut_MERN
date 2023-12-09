@@ -20,6 +20,26 @@ MONGO_URI = <your Mongo URI>
 NODE_ENV = 
  
 JWT_SECRET = <your jwt key>
+
+## Overview
+NoteHut is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) application designed to simplify note-taking and organization. Users can create profiles with profile pictures, create, edit, and delete notes, and update their profile information. This project aims to provide a seamless and efficient note-taking experience.
+
+## Features
+
+### 1. Create a Profile with a Profile Picture
+Easily create a user profile with the ability to upload a profile picture. Personalize your experience and make note-taking more engaging.
+
+### 2. Create Notes
+Effortlessly create notes with a user-friendly interface. Include titles, descriptions, or any other relevant information to keep your notes organized.
+
+### 3. Edit Notes
+Modify existing notes by updating details such as titles, descriptions, or any other content. Ensure your notes are always accurate and up-to-date.
+
+### 4. Delete Notes
+Remove notes that are no longer needed or completed. Keep your note collection organized and clutter-free.
+
+### 5. Update Profile Information
+Change your profile information, including username, email, or any other details. This feature allows users to keep their profiles current.
  
  
  
